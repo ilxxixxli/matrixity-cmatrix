@@ -1,24 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Effect</title>
+    <title>Matrixity</title>
+    <!-- Google Fonts에서 Josefin Sans Thin 100 가져오기 -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap" rel="stylesheet">
     <style>
-        body {
+        body, html {
             background: #000;
             margin: 0;
+            padding: 0;
             overflow: hidden;
+            width: 100%;
+            height: 100%;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 100;
+            color: #fff;
         }
-        canvas {
-            display: block;
+        #matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(#010 0%, transparent 20%);
+        }
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b0c4de;
+            padding: 0 2%;
+        }
+        .bracket {
+            font-size: 10vw;
+            color: #dcdcdc;
+            font-weight: 100;
+            line-height: 0.8;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        .content {
+            text-align: center;
+            color: #b0c4de;
+            margin: 0 50px; /* 대괄호 사이 간격을 100px로 설정 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content h1 {
+            font-size: 4em;
+            letter-spacing: 0.5em;
+            color: #dcdcdc;
+            font-weight: 100;
+            margin: 0;
+        }
+        .content p {
+            font-size: 1.2em;
+            color: #a9a9a9;
+            margin: 10px 0 0;
+            font-weight: 100;
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 2.5em;
+                letter-spacing: 0.3em;
+            }
+            .content p {
+                font-size: 1em;
+            }
+            .bracket {
+                font-size: 12vw;
+            }
+        }
+        @media (max-width: 480px) {
+            .content h1 {
+                font-size: 2em;
+                letter-spacing: 0.2em;
+            }
+            .content p {
+                font-size: 0.9em;
+            }
+            .bracket {
+                font-size: 15vw;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Matrix Effect Background -->
     <canvas id="matrix"></canvas>
+
+    <!-- Content with Large Brackets on Each Side -->
+    <div class="content-wrapper">
+        <div class="bracket">[&nbsp;</div>
+        <div class="content">
+            <h1>MATRIXITY</h1>
+            <p>The working solution, written in matrix.</p>
+        </div>
+        <div class="bracket">]</div>
+    </div>
+
+    <!-- Matrix Effect Script -->
     <script>
         'use strict';
 
@@ -58,7 +148,6 @@
                 var firstChar = config.initialChars.charAt(Math.floor(Math.random() * config.initialChars.length));
                 this.history.unshift(firstChar);
 
-                
                 if (this.history.length > this.historySizeMax) this.history.pop();
             },
 
