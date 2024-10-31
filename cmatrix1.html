@@ -25,14 +25,14 @@
         var ctx = matrix.getContext('2d');
 
         var config = {
-            amount: 170,
+            amount: 140,
             speed: 100,
             size: 15,
             minLength: 5,
             maxLength: 11,
             firstColor: '#fff',
             color: '#046',
-            initialChars: "MATRIXYmatrixy"  // 처음 나타나는 글자들
+            initialChars: "MATRIXYmatrixy" 
         };
 
         var datarray = [];
@@ -53,11 +53,11 @@
                     datarray.splice(datarray.indexOf(this), 1);
                     putData();
                 }
-                // 첫 글자는 "MATRIXY" 중 하나로 선택
+                
                 var firstChar = config.initialChars.charAt(Math.floor(Math.random() * config.initialChars.length));
                 this.history.unshift(firstChar);
 
-                // 이후 글자는 무작위 ASCII 문자
+                
                 if (this.history.length > this.historySizeMax) this.history.pop();
             },
 
